@@ -7,43 +7,28 @@
   <body class="text-gray-600">
     <%= render "shared/flash_alerts" %>
 
-    <header class="bg-gray-800">
-      <nav class="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Top">
-        <div class="flex w-full items-center justify-between border-b border-white/10 py-6 lg:border-none">
-          <div class="flex items-center">
-            <%= link_to root_path do %>
-              <span class="sr-only">Rapid Ruby</span>
-              <%= image_tag "rapid-ruby-stamp-dark.svg", alt: "Rapid Ruby", class: "h-10 w-auto" %>
-            <% end %>
-            <div class="ml-10 hidden space-x-8 lg:block">
-              <% nav_links.each do |nav| %>
-                <%= link_to nav.title, nav.path, class: "text-base font-medium text-gray-200 hover:text-white" %>
-              <% end %>
-            </div>
-          </div>
-          <div class="ml-10 space-x-4">
-            <% if user_signed_in? %>
-              <%= render partial: "layouts/partials/user_dropdown", locals: { current_user: Current.user } %>
-            <% else %>
-              <%= link_to "Login", sign_in_path, class: "inline-block rounded-md text-sm sm:text-base font-medium text-gray-200 hover:text-white hover:underline" %>
-              <%= link_to "Sign up", sign_up_path, class: "inline-block rounded-md border border-transparent bg-red-500 py-2 px-4 text-sm sm:text-base font-medium text-white hover:bg-opacity-75" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="flex flex-wrap justify-center gap-x-6 py-4 lg:hidden">
-          <% nav_links.each do |nav| %>
-            <%= link_to nav.title, nav.path, class: "text-base font-medium text-gray-200 hover:text-white" %>
-          <% end %>
-        </div>
-      </nav>
-    </header>
-
     <div class="mx-auto w-full max-w-7xl flex-grow lg:flex xl:px-8">
       <!-- Left sidebar & main wrapper -->
       <div class="min-w-0 flex-1 bg-white xl:flex">
         <div class="border-b border-gray-200 bg-white xl:w-64 xl:flex-shrink-0 xl:border-b-0 xl:border-r xl:border-gray-200">
-          <div class="h-full py-6 pl-4 pr-6 sm:pl-6 lg:pl-8 xl:pl-0">
+          <div class="h-full py-6 pl-4 pr-6 sm:pl-6 lg:pl-8 xl:pl-0 flex flex-col items-start space-y-4">
             <!-- Left column area -->
+            <%= link_to root_path do %>
+              <span class="sr-only">Rapid Ruby</span>
+              <%= image_tag "rapid-ruby-stamp-dark.svg", alt: "Rapid Ruby", class: "h-10 w-auto ml-3.5" %>
+            <% end %>
+            <% nav_links.each do |nav| %>
+              <%= link_to nav.title, nav.path, class: "text-xl font-medium text-gray-600 hover:text-gray-800 p-2 px-3.5 hover:bg-gray-100 rounded-full" %>
+            <% end %>
+
+            <div class="flex-auto flex flex-col justify-end">
+              <% if user_signed_in? %>
+                <%= render partial: "layouts/partials/user_dropdown", locals: { current_user: Current.user } %>
+              <% else %>
+                <%= link_to "Login", sign_in_path, class: "inline-block rounded-md text-sm sm:text-base font-medium text-gray-200 hover:text-white hover:underline" %>
+                <%= link_to "Sign up", sign_up_path, class: "inline-block rounded-md border border-transparent bg-red-500 py-2 px-4 text-sm sm:text-base font-medium text-white hover:bg-opacity-75" %>
+              <% end %>
+            </div>
           </div>
         </div>
 
