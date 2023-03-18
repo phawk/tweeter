@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
   # App routes
   resources :tweets
+  resources :profiles, only: %i[edit update]
+
+  get "/:username", to: "profiles#show", as: :show_profile
 
   root "tweets#index"
 end

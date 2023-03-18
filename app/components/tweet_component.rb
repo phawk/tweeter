@@ -6,4 +6,8 @@ class TweetComponent < ViewComponent::Base
   def initialize(tweet:)
     @tweet = tweet
   end
+
+  def url
+    show_profile_path(username: tweet.user.username)
+  end
 end

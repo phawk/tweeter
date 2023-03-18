@@ -1,0 +1,10 @@
+<div class="h-64 bg-blue-300"></div>
+<div class="px-4 pb-8 -mt-12">
+  <%= render(AvatarComponent.new(user: @profile, size: "h-24 w-24 ring-2 ring-white")) %>
+  <h1 class="text-gray-900 font-semibold text-xl mt-4"><%= @profile.name %></h1>
+  <p class="text-base text-gray-600">@<%= @profile.username %></p>
+</div>
+<%= render "tweets/form" if @profile == Current.user %>
+<div id="tweets">
+  <%= render @tweets %>
+</div>
