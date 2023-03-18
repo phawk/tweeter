@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <%= render partial: "layouts/partials/head" %>
   </head>
 
-  <body class="text-gray-600">
+  <body class="text-gray-600 h-full">
     <%= render "shared/flash_alerts" %>
 
-    <div class="mx-auto w-full max-w-7xl flex-grow lg:flex xl:px-8">
+    <div class="mx-auto h-screen overflow-hidden w-full max-w-7xl flex-grow lg:flex xl:px-8">
       <!-- Left sidebar & main wrapper -->
       <div class="min-w-0 flex-1 bg-white xl:flex">
         <div class="border-b border-gray-200 bg-white xl:w-64 xl:flex-shrink-0 xl:border-b-0 xl:border-r xl:border-gray-200">
@@ -33,7 +33,7 @@
         </div>
 
         <div class="bg-white lg:min-w-0 lg:flex-1">
-          <div class="h-full">
+          <div class="h-screen overflow-y-auto">
             <!-- Main area -->
             <%= yield %>
           </div>
@@ -41,7 +41,7 @@
       </div>
 
       <div class="bg-gray-50 pr-4 sm:pr-6 lg:flex-shrink-0 lg:border-l lg:border-gray-200 lg:pr-8 xl:pr-0">
-        <div class="h-full py-6 pl-6 lg:w-80">
+        <div class="h-screen py-6 pl-6 lg:w-80">
           <!-- Right column area -->
         </div>
       </div>
