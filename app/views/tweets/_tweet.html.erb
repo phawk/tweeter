@@ -1,15 +1,9 @@
-<div class="border-t border-gray-200 p-4">
-  <div class="flex items-start w-full mb-1.5">
-    <%= render(AvatarComponent.new(user: tweet.user)) %>
-    <div class="ml-2.5 text-sm">
-      <div class="space-x-3">
-        <span class="font-semibold text-gray-900"><%= tweet.user.name %></span>
-        <span class="text-gray-500">@<%= tweet.user.username %></span>
-        <span class="text-gray-500"><%= time_ago_in_words tweet.created_at %></span>
-      </div>
-      <div class="text-gray-800 mt-0.5">
-        <%= simple_format tweet.body %>
-      </div>
-    </div>
+<% if local_assigns.fetch(:new_content, false) %>
+  <div class="border-t border-gray-200 p-4 bg-blue-200 transition-colors duration-1000" data-controller="blink" data-blink-class-to-remove-value="bg-blue-200">
+    <%= render(TweetComponent.new(tweet: tweet)) %>
   </div>
-</div>
+<% else %>
+  <div class="border-t border-gray-200 p-4">
+    <%= render(TweetComponent.new(tweet: tweet)) %>
+  </div>
+<% end %>

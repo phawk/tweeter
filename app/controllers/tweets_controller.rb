@@ -13,7 +13,20 @@ class TweetsController < ApplicationController
     tweet = Current.user.tweets.new(tweet_params)
 
     if tweet.save
-      redirect_to root_path, notice: "Tweet posted."
+      render(turbo_stream: [
+        turbo_stream.prepend(
+          "tweets",
+          partial: "tweets/tweet",
+          locals: {
+            tweet: tweet,
+            new_content: true
+          }
+        ),
+        turbo_stream.replace(
+          "tweet_form",
+          partial: "tweets/form"
+        )
+      ])
     else
       redirect_to root_path, alert: "Tweet failed, try again."
     end

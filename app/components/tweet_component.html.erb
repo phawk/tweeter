@@ -1,0 +1,13 @@
+<div class="flex items-start w-full mb-1.5">
+  <%= render(AvatarComponent.new(user: tweet.user)) %>
+  <div class="ml-2.5 text-sm">
+    <div class="space-x-3">
+      <span class="font-semibold text-gray-900"><%= tweet.user.name %></span>
+      <span class="text-gray-500">@<%= tweet.user.username %></span>
+      <span class="text-gray-500"><%= time_ago_in_words tweet.created_at %></span>
+    </div>
+    <div class="text-gray-800 mt-0.5">
+      <%= simple_format tweet.body %>
+    </div>
+  </div>
+</div>
