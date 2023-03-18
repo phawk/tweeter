@@ -22,11 +22,11 @@ module StylesHelper
   end
 
   def button_classes
-    class_variants("py-2 px-4 rounded-md md:text-sm font-semibold inline-flex items-center cursor-pointer",
+    class_variants("py-2 px-4 rounded-full md:text-sm font-semibold inline-flex items-center cursor-pointer",
       variants: {
         style: {
           secondary: "bg-white text-gray-600 border border-gray-200 hover:border-gray-500",
-          primary: "bg-slate-800 hover:bg-opacity-90 text-white"
+          primary: "bg-blue-500 hover:bg-opacity-80 text-white"
         },
         fullwidth: "w-full justify-center",
         nowrap: "whitespace-nowrap"

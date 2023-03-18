@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_143039) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_18_191209) do
   create_table "email_verification_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
@@ -39,7 +39,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_143039) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "tweets", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_tweets_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
+    t.string "username", null: false
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
@@ -54,4 +63,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_18_143039) do
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "tweets", "users"
 end

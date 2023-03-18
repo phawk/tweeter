@@ -3,11 +3,13 @@ pete:
   first_name: Pete
   last_name: Hawkins
   email: pete@rapidruby.com
+  username: pete
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
   verified: true
 lazaro_nixon:
   first_name: "Lazaro"
   last_name: "Nixon"
+  username: lazaro
   email: lazaronixon@hotmail.com
   password_digest: <%= BCrypt::Password.create("Secret1*3*5*") %>
   verified: true

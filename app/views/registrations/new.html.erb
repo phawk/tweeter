@@ -36,6 +36,13 @@
     </div>
 
     <div class="mb-3">
+      <%= form.label :username, class: label_classes.render %>
+      <div class="mt-1">
+        <%= form.text_field :username, class: input_classes.render %>
+      </div>
+    </div>
+
+    <div class="mb-3">
       <%= form.label :password, class: label_classes.render %>
       <div class="mt-1">
         <%= form.password_field :password, autocomplete: "new-password", class: input_classes.render %>

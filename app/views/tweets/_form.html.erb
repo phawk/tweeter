@@ -1,0 +1,7 @@
+<%= form_with(model: Tweet.new, html: { class: "p-4 flex flex-col items-end" }) do |f| %>
+  <div class="flex items-start w-full mb-1.5">
+    <%= render(AvatarComponent.new(user: Current.user)) %>
+    <%= f.text_area :body, placeholder: "What do you want to say...", class: "flex-auto ml-2.5 w-full p-0 border-none focus:border-none focus:ring-0 outline-none" %>
+  </div>
+  <%= f.submit "Tweet", class: button_classes.render %>
+<% end %>

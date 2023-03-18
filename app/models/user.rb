@@ -8,9 +8,10 @@ class User < ApplicationRecord
   has_many :email_verification_tokens, dependent: :destroy
   has_many :password_reset_tokens, dependent: :destroy
   has_many :sessions, dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :tweets, dependent: :destroy
 
   validates :first_name, :last_name, presence: true
+  validates :username, presence: true, username: true
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :password, allow_nil: true, length: { minimum: 8 }
   validates :terms_and_conditions, acceptance: true, on: :create
