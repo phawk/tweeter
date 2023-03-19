@@ -1,6 +1,18 @@
 <%= turbo_frame_tag :modal do %>
   <%= render(ModalComponent.new) do %>
-    <h1 class="font-bold text-4xl">Profiles#edit</h1>
-    <p>Find me in app/views/profiles/edit.html.erb</p>
+    <%= page_title("Editing @#{@profile.username}") %>
+    <%= form_with(model: @profile, url: profile_path(username: @profile.username)) do |f| %>
+      <div class="mt-3">
+        <%= f.label :bio, class: label_classes.render %>
+        <%= f.text_area :bio, class: input_classes.render %>
+      </div>
+
+      <div class="mt-3">
+        <%= f.label :website, class: label_classes.render %>
+        <%= f.text_field :website, class: input_classes.render %>
+      </div>
+
+      <div class="mt-3"><%= f.submit "Save profile", class: button_classes.render %></div>
+    <% end %>
   <% end %>
 <% end %>

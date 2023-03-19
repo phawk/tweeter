@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_18_191209) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_19_114552) do
   create_table "email_verification_tokens", force: :cascade do |t|
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_18_191209) do
     t.boolean "verified", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "bio"
+    t.string "website"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -5,6 +5,14 @@
     <div>
       <h1 class="text-gray-900 font-semibold text-xl"><%= @profile.name %></h1>
       <p class="text-base text-gray-600">@<%= @profile.username %></p>
+      <% if @profile.bio.present? %>
+        <p class="mt-3 text-base text-gray-700"><%= simple_format @profile.bio %></p>
+      <% end %>
+      <% if @profile.website.present? %>
+        <p class="mt-3 text-sm">
+          <%= link_to @profile.website, @profile.website, class: "underline text-blue-700 hover:text-blue-600" %>
+        </p>
+      <% end %>
     </div>
     <% if @profile == Current.user %>
       <div class="flex-shrink-0 ml-4"><%= link_to "Edit", edit_profile_path(username: Current.user.username), data: { turbo_frame: :modal }, class: button_classes.render(style: :secondary) %></div>

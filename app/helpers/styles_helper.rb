@@ -7,7 +7,7 @@ module StylesHelper
     class_variants("font-bold tracking-tight text-gray-800",
       variants: {
         style: {
-          md: "text-3xl",
+          md: "text-xl",
         },
         align: {
           left: "text-left",

@@ -12,9 +12,21 @@ class ProfilesController < ApplicationController
     end
   end
 
+  def update
+    if @profile.update(profile_params)
+      redirect_to show_profile_path(username: @profile.username), notice: "Profile saved."
+    else
+      # fails
+    end
+  end
+
   private
 
   def set_profile
     @profile = User.find_by!(username: params[:username])
+  end
+
+  def profile_params
+    params.require(:user).permit(:bio, :website, :avatar)
   end
 end
