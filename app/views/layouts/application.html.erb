@@ -18,8 +18,11 @@
                 <span class="sr-only">Rapid Ruby</span>
                 <%= image_tag "rapid-ruby-stamp-dark.svg", alt: "Rapid Ruby", class: "h-10 w-auto ml-3.5" %>
               <% end %>
-              <% nav_links.each do |nav| %>
-                <%= link_to nav.title, nav.path, class: "text-xl font-medium text-gray-600 hover:text-gray-800 p-2 px-3.5 hover:bg-gray-100 rounded-full" %>
+              <%= link_to "Home", root_path, class: "text-xl font-medium text-gray-600 hover:text-gray-800 p-2 px-3.5 hover:bg-gray-100 rounded-full" %>
+              <%= link_to "Explore", "/explore", class: "text-xl font-medium text-gray-600 hover:text-gray-800 p-2 px-3.5 hover:bg-gray-100 rounded-full" %>
+              <% if user_signed_in? %>
+                <%= link_to "Profile", show_profile_path(username: Current.user.username), class: "text-xl font-medium text-gray-600 hover:text-gray-800 p-2 px-3.5 hover:bg-gray-100 rounded-full" %>
+                <%= link_to "Notifications", "/notifications", class: "text-xl font-medium text-gray-600 hover:text-gray-800 p-2 px-3.5 hover:bg-gray-100 rounded-full" %>
               <% end %>
 
               <div class="flex-auto flex flex-col justify-end">
