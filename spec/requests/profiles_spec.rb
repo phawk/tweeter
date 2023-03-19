@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Profiles", type: :request do
   let(:user) { users(:pete) }
+  let(:other) { users(:lazaro_nixon) }
+
   describe "GET /:username" do
     context "when signed out" do
       it "returns http success" do
@@ -20,9 +22,16 @@ RSpec.describe "Profiles", type: :request do
   end
 
   describe "GET /edit" do
+    before { sign_in(user) }
+
     it "returns http success" do
-      get "/profiles/edit"
+      get "/profiles/#{user.username}/edit"
       expect(response).to have_http_status(:success)
+    end
+
+    it "redirects away if you don't have permission" do
+      get "/profiles/#{other.username}/edit"
+      expect(response).to redirect_to(root_path)
     end
   end
 end

@@ -1,8 +1,15 @@
 <div class="h-64 bg-blue-300"></div>
 <div class="px-4 pb-8 -mt-12">
   <%= render(AvatarComponent.new(user: @profile, size: "h-24 w-24 ring-2 ring-white")) %>
-  <h1 class="text-gray-900 font-semibold text-xl mt-4"><%= @profile.name %></h1>
-  <p class="text-base text-gray-600">@<%= @profile.username %></p>
+  <div class="flex items-start justify-between mt-4">
+    <div>
+      <h1 class="text-gray-900 font-semibold text-xl"><%= @profile.name %></h1>
+      <p class="text-base text-gray-600">@<%= @profile.username %></p>
+    </div>
+    <% if @profile == Current.user %>
+      <div class="flex-shrink-0 ml-4"><%= link_to "Edit", edit_profile_path(username: Current.user.username), data: { turbo_frame: :modal }, class: button_classes.render(style: :secondary) %></div>
+    <% end %>
+  </div>
 </div>
 <%= render "tweets/form" if @profile == Current.user %>
 <div id="tweets">
