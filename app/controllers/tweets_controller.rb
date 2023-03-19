@@ -1,4 +1,6 @@
 class TweetsController < ApplicationController
+  skip_before_action :authenticate, only: %i[index show]
+
   def index
     @tweets = Tweet.all.ordered
   end

@@ -4,6 +4,7 @@ RSpec.describe "RegistrationsTest", type: :feature do
   it "allows signing up" do
     visit sign_up_url
 
+    fill_in "Username", with: "jane"
     fill_in "First name", with: "Jane"
     fill_in "Last name", with: "Nixon"
     fill_in "Email", with: "janenixon@hey.com"

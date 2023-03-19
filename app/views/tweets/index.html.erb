@@ -1,5 +1,5 @@
 <div>
-  <%= render "tweets/form" %>
+  <%= render "tweets/form" if user_signed_in? %>
   <div id="tweets">
     <%= render @tweets %>
   </div>
