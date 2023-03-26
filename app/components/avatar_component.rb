@@ -8,6 +8,14 @@ class AvatarComponent < ViewComponent::Base
     @size = size
   end
 
+  def avatar?
+    user.avatar.attached?
+  end
+
+  def avatar_url
+    url_for(user.avatar)
+  end
+
   def initials
     [
       user.first_name.split("").first,

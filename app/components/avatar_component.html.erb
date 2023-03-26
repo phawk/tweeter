@@ -1,3 +1,7 @@
-<span class="inline-flex <%= size %> items-center justify-center rounded-full bg-gray-500 flex-shrink-0">
-  <span class="text-lg font-medium leading-none text-white"><%= initials %></span>
+<span class="inline-flex <%= size %> items-center justify-center rounded-full bg-gray-500 flex-shrink-0 overflow-hidden">
+  <% if avatar? %>
+    <%= image_tag avatar_url, class: "object-cover w-full h-full", alt: user.name %>
+  <% else %>
+    <span class="text-lg font-medium leading-none text-white"><%= initials %></span>
+  <% end %>
 </span>
