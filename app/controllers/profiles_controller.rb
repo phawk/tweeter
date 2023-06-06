@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   before_action :set_profile
 
   def show
-    @tweets = @profile.tweets.ordered
+    @tweets = @profile.tweets.root_tweets.ordered
   end
 
   def edit

@@ -8,6 +8,7 @@ class Tweet < ApplicationRecord
 
   validates :body, presence: true
 
+  scope :root_tweets, -> { where(root_tweet_id: nil) }
   scope :ordered, -> { order(created_at: :desc) }
 
   def likes_count
@@ -15,6 +16,10 @@ class Tweet < ApplicationRecord
   end
 
   def replies_count
-    all_replies.count
+    if root_tweet_id.nil?
+      all_replies.count
+    else
+      direct_replies.count
+    end
   end
 end

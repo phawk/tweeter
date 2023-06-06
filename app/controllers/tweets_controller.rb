@@ -1,8 +1,9 @@
 class TweetsController < ApplicationController
   skip_before_action :authenticate, only: %i[index show]
+  before_action :set_tweet, only: :show
 
   def index
-    @tweets = Tweet.all.ordered
+    @tweets = Tweet.root_tweets.ordered
   end
 
   def show
@@ -37,6 +38,10 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
-    params.require(:tweet).permit(:body)
+    params.require(:tweet).permit(:body, :root_tweet_id, :parent_tweet_id)
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:id])
   end
 end
