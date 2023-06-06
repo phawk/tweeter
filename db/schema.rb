@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_23_194827) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_121450) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -81,6 +81,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_194827) do
     t.text "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "root_tweet_id"
+    t.integer "parent_tweet_id"
+    t.integer "retweet_id"
+    t.index ["parent_tweet_id"], name: "index_tweets_on_parent_tweet_id"
+    t.index ["retweet_id"], name: "index_tweets_on_retweet_id"
+    t.index ["root_tweet_id"], name: "index_tweets_on_root_tweet_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
@@ -106,5 +112,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_23_194827) do
   add_foreign_key "password_reset_tokens", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "tweets", "tweets", column: "parent_tweet_id"
+  add_foreign_key "tweets", "tweets", column: "retweet_id"
+  add_foreign_key "tweets", "tweets", column: "root_tweet_id"
   add_foreign_key "tweets", "users"
 end

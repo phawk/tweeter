@@ -1,4 +1,7 @@
-<div>
-  <h1 class="font-bold text-4xl">Tweets#show</h1>
-  <p>Find me in app/views/tweets/show.html.erb</p>
+<div class="border-b border-gray-200 p-4">
+  <%= render(TweetComponent.new(tweet: @tweet)) %>
+</div>
+<%= render(partial: "tweets/form", locals: { root_tweet_id: @tweet.root_tweet_id || @tweet.id, parent_tweet_id: @tweet.id, button_title: "Reply" }) if user_signed_in? %>
+<div id="tweets">
+  <%= render(@tweet.direct_replies) %>
 </div>
