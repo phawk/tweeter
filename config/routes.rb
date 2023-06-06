@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   # App routes
   resources :tweets do
     resources :likes, only: %i[create destroy]
+    resources :retweets, only: :create
   end
 
   resources :profiles, param: :username, only: %i[edit update]
