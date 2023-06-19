@@ -14,6 +14,7 @@ class Tweet < ApplicationRecord
   scope :ordered, -> { order(created_at: :desc) }
 
   def can_retweet?(user:)
+    return false if user.nil?
     !user.tweets.where(retweet_id: id).any?
   end
 

@@ -9,8 +9,10 @@ RSpec.describe "Tweets", type: :request do
   end
 
   describe "GET /show" do
+    let(:tweet) { tweets(:petes_tweet) }
+
     it "returns http success" do
-      get "/tweets/show"
+      get "/tweets/#{tweet.id}"
       expect(response).to have_http_status(:success)
     end
   end
