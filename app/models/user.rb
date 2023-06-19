@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :password_reset_tokens, dependent: :destroy
   has_many :sessions, dependent: :destroy
   has_many :tweets, dependent: :destroy
+  has_many :following_follows, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
+  has_many :follower_follows, class_name: "Follow", foreign_key: :following_id, dependent: :destroy
+  has_many :following, class_name: "User", through: :following_follows, dependent: :destroy
+  has_many :followers, class_name: "User", through: :follower_follows, dependent: :destroy
 
   has_one_attached :avatar
 
@@ -32,5 +36,25 @@ class User < ApplicationRecord
 
   def name
     [first_name, last_name].compact.join(" ")
+  end
+
+  def followed_by?(follower:)
+    followers.exists?(follower.id)
+  end
+
+  def follow!(follower:)
+    return if followed_by?(follower: follower)
+
+    Follow.create!(
+      following: self,
+      follower: follower
+    )
+  end
+
+  def unfollow!(follower:)
+    Follow.find_by(
+      following: self,
+      follower: follower
+    )&.destroy
   end
 end

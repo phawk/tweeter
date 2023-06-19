@@ -1,0 +1,5 @@
+<% if following? %>
+  <%= button_to "Unfollow", profile_follows_path(profile_username: profile.username), method: :delete, class: helpers.button_classes.render(style: :secondary) %>
+<% else %>
+  <%= button_to "Follow", profile_follows_path(profile_username: profile.username), method: :post, class: helpers.button_classes.render(style: :primary) %>
+<% end %>
