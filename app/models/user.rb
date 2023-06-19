@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :password_reset_tokens, dependent: :destroy
   has_many :sessions, dependent: :destroy
   has_many :tweets, dependent: :destroy
+  has_many :following_follows, class_name: "Follow", foreign_key: :follower_id, dependent: :destroy
+  has_many :follower_follows, class_name: "Follow", foreign_key: :following_id, dependent: :destroy
+  has_many :following, class_name: "User", through: :following_follows, dependent: :destroy
+  has_many :followers, class_name: "User", through: :follower_follows, dependent: :destroy
 
   has_one_attached :avatar
 
