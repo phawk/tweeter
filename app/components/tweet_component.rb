@@ -10,6 +10,6 @@ class TweetComponent < ViewComponent::Base
   delegate :retweet?, to: :tweet
 
   def url
-    show_profile_path(username: tweet.user.username)
+    show_profile_path(username: tweet.author.username)
   end
 end
