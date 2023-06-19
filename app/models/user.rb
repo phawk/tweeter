@@ -37,4 +37,20 @@ class User < ApplicationRecord
   def name
     [first_name, last_name].compact.join(" ")
   end
+
+  def follow!(follower:)
+    return if followers.exists?(follower.id)
+
+    Follow.create!(
+      following: self,
+      follower: follower
+    )
+  end
+
+  def unfollow!(follower:)
+    Follow.find_by(
+      following: self,
+      follower: follower
+    )&.destroy
+  end
 end
