@@ -38,8 +38,12 @@ class User < ApplicationRecord
     [first_name, last_name].compact.join(" ")
   end
 
+  def followed_by?(follower:)
+    followers.exists?(follower.id)
+  end
+
   def follow!(follower:)
-    return if followers.exists?(follower.id)
+    return if followed_by?(follower: follower)
 
     Follow.create!(
       following: self,

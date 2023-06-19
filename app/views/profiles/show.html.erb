@@ -17,6 +17,11 @@
     <% if @profile == Current.user %>
       <div class="flex-shrink-0 ml-4"><%= link_to "Edit", edit_profile_path(username: Current.user.username), data: { turbo_frame: :modal }, class: button_classes.render(style: :secondary) %></div>
     <% end %>
+    <% if user_signed_in? && @profile != Current.user %>
+      <div class="flex-shrink-0 ml-4">
+        <%= render(FollowComponent.new(profile: @profile)) %>
+      </div>
+    <% end %>
   </div>
 </div>
 <%= render "tweets/form" if @profile == Current.user %>

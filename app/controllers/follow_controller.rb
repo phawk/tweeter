@@ -3,12 +3,12 @@ class FollowController < ApplicationController
 
   def create
     @profile.follow!(follower: Current.user)
-    redirect_to profile_path(username: @profile.username)
+    redirect_to profile_path(username: @profile.username), notice: "Followed @#{@profile.username}"
   end
 
   def destroy
     @profile.unfollow!(follower: Current.user)
-    redirect_to profile_path(username: @profile.username)
+    redirect_to profile_path(username: @profile.username), notice: "Unfollowed @#{@profile.username}"
   end
 
   private
