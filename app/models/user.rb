@@ -34,6 +34,11 @@ class User < ApplicationRecord
     sessions.where.not(id: Current.session).destroy_all
   end
 
+  def timeline_ids
+    following_ids = following.pluck(:id)
+    following_ids + [id]
+  end
+
   def name
     [first_name, last_name].compact.join(" ")
   end

@@ -3,7 +3,11 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: :show
 
   def index
-    @tweets = Tweet.root_tweets.ordered
+    if user_signed_in? && Current.user.following.any?
+      @tweets = Tweet.root_tweets.ordered.where(user_id: Current.user.timeline_ids)
+    else
+      @tweets = Tweet.root_tweets.ordered
+    end
   end
 
   def show
